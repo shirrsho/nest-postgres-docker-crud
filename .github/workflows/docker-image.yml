@@ -19,6 +19,6 @@ jobs:
     - name: Build and push Nest Docker image
       uses: docker/build-push-action@v5.1.0
       with:
-        context: ./nest-crud
+        context: .
         push: true
         tags: shirsho/nest-crud:latest
