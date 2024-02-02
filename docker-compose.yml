@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  app:
+    container_name: nest-crud
+    image: shirrsho/nest-crud
+    build:
+      context: .
+    ports:
+      - "4000:4000"
+    environment:
+      DB_TYPE: postgres
+      PG_USER: postgres
+      PG_PASSWORD: postgres
+      PG_DB: postgres
+      PG_PORT: 5432
+      PG_HOST: db
+      PORT: 4000
+    depends_on:
+      - db
+    links:
+      - db
+
+  db:
+    container_name: db
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+
+volumes:
+  pgdata: {}
