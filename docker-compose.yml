@@ -3,7 +3,7 @@ version: "3"
 services:
   nest-crud:
     container_name: nest-crud
-    image: shirrsho/nest-crud:latest
+    image: shirsho/nest-crud:latest
     build:
       context: .
     ports:
