@@ -13,7 +13,6 @@ export class UsersService {
   
   async create(createUserDto: CreateUserDto) {
     const { email, name } = createUserDto;
-    console.log(email, name);
     return await this.userRepository.save({ email, name });
   }
 
@@ -21,15 +20,16 @@ export class UsersService {
     return await this.userRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    return await this.userRepository.findOne({ where: { id: id } });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const { email, name } = updateUserDto;
+    return await this.userRepository.save({ email, name, id });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    return await this.userRepository.delete(id);
   }
 }
